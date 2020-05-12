@@ -16,5 +16,10 @@ dxfin <- function(file) {
     sorszam <- sorszam[-1]
     ssz.txt <- raw.text[sorszam + 10]
     ## Adattábla
-    data.frame(Y = Y.coo, X = X.coo, Z = Z.coo, K = kod.txt, K = ssz.txt)
+    data.frame(SSZ = ssz.txt,
+               Y = round(as.numeric(Y.coo), 2),
+               X = round(as.numeric(X.coo), 2),
+               Z = round(as.numeric(Z.coo), 2),
+               K = kod.txt
+               )
 }
