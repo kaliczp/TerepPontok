@@ -11,6 +11,10 @@ dxfin <- function(file) {
     felirat <- which(raw.text == "TEREPPONTOK_FELIRAT")
     felirat <- felirat[-1]
     kod.txt <- raw.text[felirat + 10]
+    ## Sorszám kiszedése
+    sorszam <- which(raw.text == "TEREPPONTOK_SORSZÁM")
+    sorszam <- sorszam[-1]
+    ssz.txt <- raw.text[sorszam + 10]
     ## Adattábla
-    data.frame(Y = Y.coo, X = X.coo, Z = Z.coo, K = kod.txt)
+    data.frame(Y = Y.coo, X = X.coo, Z = Z.coo, K = kod.txt, K = ssz.txt)
 }
