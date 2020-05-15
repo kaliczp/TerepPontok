@@ -13,5 +13,5 @@ for(ttfile in dxffiles) {
     ## Magasság
     ttdxf[,4] <- round(ttdxf[,4] + rnorm(nrow(ttdxf), sd=.02) + sample(1:10,1)*10,2)
     ttnewfilen <- unlist(strsplit(ttfile, "[.]"))
-    write.table(ttdxf, paste0(ttnewfilen[1], ".EXP"), sep=",", col.names = FALSE, row.names = F, quot = F)
+    write.table(ttdxf, paste0(ttnewfilen[1], ".EXP"), sep=",", col.names = FALSE, row.names = F, quot = F, eol = "\r\n")
 }
