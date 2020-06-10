@@ -11,5 +11,6 @@ for(ttfile in 1:length(dxffiles)) {
                        runif(nrow(ttdxf), -0.32, 0.32) +
                        (ttfile - 1) * 15, 2)
     ttnewfilen <- unlist(strsplit(dxffiles[ttfile], "[.]"))
-    write.table(ttdxf, paste0(ttnewfilen[1], ".EXP"), sep=",", col.names = FALSE, row.names = F, quot = F, eol = "\r\n")
+    write.table(ttdxf[1:9,], paste0(ttnewfilen[1], "AP.EXP"), sep=",", col.names = FALSE, row.names = F, quot = F, eol = "\r\n")
+    write.table(ttdxf[10:91,], paste0(ttnewfilen[1], "RP.EXP"), sep=",", col.names = FALSE, row.names = F, quot = F, eol = "\r\n")
 }
