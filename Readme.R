@@ -1,20 +1,20 @@
 dxfin <- function(file) {
-    raw.text <- scan(file, character(), enc="latin1")
-    pont <- which(raw.text == "TEREPPONTOK")
+    raw.text <- scan(file, character())
+    pont <- which(raw.text == "Tereppontok")
     ## Rétegdefiníció törlése
-    pont <- pont[-1]
-    ## Koordináták kiszedése
-    Y.coo <- raw.text[pont + 2]
-    X.coo <- raw.text[pont + 4]
-    Z.coo <- raw.text[pont + 6]
+    pont <- pont[-c(1,2)]
+    ## Koordináták kiszedésedxffileso
+    Y.coo <- raw.text[pont + 4]
+    X.coo <- raw.text[pont + 6]
+    Z.coo <- raw.text[pont + 8]
     ## Feliratok kiszedése
-    felirat <- which(raw.text == "TEREPPONTOK_FELIRAT")
+    felirat <- which(raw.text == "Tereppontok_Felirat")
     felirat <- felirat[-1]
-    kod.txt <- raw.text[felirat + 10]
+    kod.txt <- raw.text[felirat + 12]
     ## Sorszám kiszedése
-    sorszam <- which(raw.text == "TEREPPONTOK_SORSZÁM")
+    sorszam <- which(raw.text == "Tereppontok_Sorszám")
     sorszam <- sorszam[-1]
-    ssz.txt <- raw.text[sorszam + 10]
+    ssz.txt <- raw.text[sorszam + 12]
     ## Adattábla
     data.frame(SSZ = as.numeric(ssz.txt),
                Y = round(as.numeric(Y.coo), 2),
