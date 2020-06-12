@@ -1,9 +1,11 @@
 dxffiles <- dir(pattern = "dxf")
+dxffiles <- dxffiles[c(1,3:10,2)]
+numcorr <- c(3:(-5),3)
 for(ttfile in 1:length(dxffiles)) {
     ttdxf <- dxfin(file = dxffiles[ttfile])
     ## Sorsz
     ttdxf[1:2,1] <- sort(sample(1:9,2))*10
-    ttssznum <- sample(0:3,1)
+    ttssznum <- numcorr[ttfile]
     ttdxf[3:9,1] <- ttdxf[3:9,1] - ttssznum * 100
     ttdxf[10:91,1] <- ttdxf[10:91,1] - ttssznum * 1000
     ## Magasság
