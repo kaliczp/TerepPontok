@@ -1,13 +1,16 @@
 dxffiles <- dir(pattern = "dxf")
 dxffiles <- dxffiles[c(1,3:10,2)]
-numcorr <- c(3:(-5),3)
+numcorr <- c(2:(-6),3)
 for(ttfile in 1:length(dxffiles)) {
     ttdxf <- dxfin(file = dxffiles[ttfile])
     ## Sorsz
-    ttdxf[1:2,1] <- sort(sample(1:9,2))*10
+    Line.ssz <- ttdxf[,"K"] == "AP"
+    ttdxf[Line.ssz,1] <- sort(sample(1:9,2))*10
     ttssznum <- numcorr[ttfile]
-    ttdxf[3:9,1] <- ttdxf[3:9,1] - ttssznum * 100
-    ttdxf[10:91,1] <- ttdxf[10:91,1] - ttssznum * 1000
+    Line.sp <- ttdxf[,"K"] == "SP"
+    ttdxf[Line.sp, 1] <- ttdxf[Line.sp, 1] - ttssznum * 100
+    Line.sp <- ttdxf[,"K"] == "B" | ttdxf[,"K"] == "T"
+    ttdxf[Line.sp, 1] <- ttdxf[Line.sp,1] - ttssznum * 1000
     ## Magasság
     ttdxf[,4] <- round(ttdxf[,4] +
                        runif(nrow(ttdxf), -0.32, 0.32) +
