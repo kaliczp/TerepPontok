@@ -5,13 +5,14 @@ dxffiles <- dxffiles[c(1,3:10,2)]
 numcorr <- c(2:(-6),2)
 for(ttfile in 1:length(dxffiles)) {
     ttdxf <- dxfin(file = dxffiles[ttfile])
+    ttdxf <- UnifCode(ttdxf)
     ## Sorsz
     Line.ap <- ttdxf[,"K"] == "AP"
     ttdxf[Line.ap,1] <- sort(sample(1:9,2))*10
     ttssznum <- numcorr[ttfile]
     Line.sp <- ttdxf[,"K"] == "SP"
     ttdxf[Line.sp, 1] <- ttdxf[Line.sp, 1] - ttssznum * 100
-    Line.t <- ttdxf[,"K"] == "B" | ttdxf[,"K"] == "T"
+    Line.t <- ttdxf[,"K"] == "sv" | ttdxf[,"K"] == "t"
     ttdxf[Line.t, 1] <- ttdxf[Line.t,1] - (ttssznum - 2) * 1000 + 1
     ## Magasság
     ttdxf[,4] <- round(ttdxf[,4] +
