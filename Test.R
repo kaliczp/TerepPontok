@@ -1,3 +1,5 @@
+nevek <- scan("nevek.csv", "character", sep = "\n")
+nevek <- gsub(" ", "_", nevek)
 dxffiles <- dir(pattern = "dxf")
 dxffiles <- dxffiles[c(1,3:10,2)]
 numcorr <- c(2:(-6),2)
@@ -16,6 +18,7 @@ for(ttfile in 1:length(dxffiles)) {
                        runif(nrow(ttdxf), -0.32, 0.32) +
                        (ttfile - 1) * 15, 2)
     ttnewfilen <- unlist(strsplit(dxffiles[ttfile], "[.]"))
-    write.table(ttdxf[Line.ap | Line.sp,], paste0(ttnewfilen[1], "AP.EXP"), sep=",", col.names = FALSE, row.names = F, quot = F, eol = "\r\n")
-    write.table(ttdxf[Line.t,], paste0(ttnewfilen[1], "RP.EXP"), sep=",", col.names = FALSE, row.names = F, quot = F, eol = "\r\n")
+    ttnewfilen <- paste(ttnewfilen, nevek[ttfile], sep = "_")
+    write.table(ttdxf[Line.ap | Line.sp,], paste0(ttnewfilen[1], "_AP.EXP"), sep=",", col.names = FALSE, row.names = F, quot = F, eol = "\r\n")
+    write.table(ttdxf[Line.t,], paste0(ttnewfilen[1], "_RP.EXP"), sep=",", col.names = FALSE, row.names = F, quot = F, eol = "\r\n")
 }
