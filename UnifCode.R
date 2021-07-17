@@ -6,4 +6,8 @@ UnifCode <- function(x) {
     fieldcode <- x[, "K"] == "B"
     x[fieldcode, "K"]  <- "sv"
     x
+    ## Traverse points
+    fieldcode <- x[, "K"] == "sp"
+    x[fieldcode, "K"]  <- "SP"
+    x
 }
