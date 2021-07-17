@@ -1,6 +1,6 @@
-dxfin <- function(file) {
-    raw.text <- scan(file, character())
-    pont <- which(raw.text == "Tereppontok")
+dxfin <- function(file, layername = "Tereppontok") {
+    raw.text <- scan(file, character(), fileEncod = "latin1")
+    pont <- which(raw.text == layername)
     ## Rétegdefiníció törlése
     pont <- pont[-c(1,2)]
     ## Koordináták kiszedésedxffileso
