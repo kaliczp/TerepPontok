@@ -1,5 +1,5 @@
-dxfin <- function(file, layername = "Tereppontok") {
-    raw.text <- scan(file, character(), fileEncod = "latin1")
+dxfin <- function(file, layername = "Tereppontok", fileEncod = "latin1") {
+    raw.text <- scan(file, character(), fileEncod = fileEncod)
     prepont <- which(raw.text == layername)
     pont <- prepont
     ## Koordináta helyének meghatározása

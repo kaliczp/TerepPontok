@@ -4,7 +4,7 @@ dxffiles <- dir(pattern = "dxf")
 dxffiles <- dxffiles[c(1,3:10,2)]
 numcorr <- c(2:(-6),2)
 for(ttfile in 1:length(dxffiles)) {
-    ttdxf <- dxfin(file = dxffiles[ttfile])
+    ttdxf <- dxfin(file = dxffiles[ttfile], fileEncod = "")
     ttdxf <- UnifCode(ttdxf)
     ## Sorsz
     Line.ap <- ttdxf[,"K"] == "AP"
