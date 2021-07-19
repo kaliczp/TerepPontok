@@ -1,12 +1,16 @@
 dxfin <- function(file, layername = "Tereppontok") {
     raw.text <- scan(file, character(), fileEncod = "latin1")
-    pont <- which(raw.text == layername)
-    ## Rétegdefiníció törlése
-    pont <- pont[-c(1,2)]
+    prepont <- which(raw.text == layername)
+    pont <- prepont
+    ## Koordináta helyének meghatározása
+    kozel <- raw.text[prepont + 2] == "AcDbPoint"
+    pont[kozel] <- pont[kozel] + 2
+    pont[!kozel] <- pont[!kozel] + 4
+    pont <- pont[raw.text[pont] == "AcDbPoint"]
     ## Koordináták kiszedésedxffileso
-    Y.coo <- raw.text[pont + 4]
-    X.coo <- raw.text[pont + 6]
-    Z.coo <- raw.text[pont + 8]
+    Y.coo <- raw.text[pont + 2]
+    X.coo <- raw.text[pont + 4]
+    Z.coo <- raw.text[pont + 6]
     ## Feliratok kiszedése
     felirat <- which(raw.text == "Tereppontok_Felirat")
     felirat <- felirat[-1]
